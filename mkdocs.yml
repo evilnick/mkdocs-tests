@@ -1,4 +1,14 @@
 site_name: My Docs
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: info
+  links:
+    not_found: warn
+    anchors: info
+    absolute_links: info
+    unrecognized_links: info
 nav:
   - Home: '../'
   - 'User Guide': 'user-guide.md'

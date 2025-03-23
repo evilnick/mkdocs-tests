@@ -26,7 +26,7 @@ jobs:
         id: mkdocs
         run: |
           source venv/bin/activate
-          mkdocs build 2>&1 | tee mkdocs.out
+          mkdocs build --strict 2>&1 | tee mkdocs.out
 
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v3
