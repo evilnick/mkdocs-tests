@@ -10,6 +10,5 @@ validation:
     absolute_links: info
     unrecognized_links: info
 nav:
-  - Home: '../'
-  - 'User Guide': 'user-guide.md'
-  - 'Bug Tracker': '/bugs/'
+  - Home: 'index.md'
+  - 'User Guide': 'hello.md'
