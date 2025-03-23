@@ -1,5 +1,4 @@
 site_name: My Docs
 nav:
-  - Home: '../'
-  - 'User Guide': 'user-guide.md'
-  - 'Bug Tracker': '/bugs/'
+  - Home: 'index.md'
+  - 'User Guide': 'hello.md'
