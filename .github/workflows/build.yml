@@ -1,0 +1,39 @@
+name: Lychee PR external linkcheck
+on:
+  pull_request:
+    branches:
+      - main
+permissions:  
+  contents: read 
+  pull-requests: write
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+      - name: Install dependencies
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+      - name: Run mkdocs in strict mode
+        id: mkdocs
+        run: |
+          source venv/bin/activate
+          mkdocs build 2>&1 | tee mkdocs.out
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          file-path: mkdocs.out
+          comment-tag: execution
+          mode: recreate
+      - name: Report Status
+        if: failure()
+        run: echo "❌ Broken links detected. Please fix them!"
