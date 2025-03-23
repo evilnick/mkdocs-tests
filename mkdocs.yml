@@ -7,7 +7,7 @@ validation:
   links:
     not_found: warn
     anchors: info
-    absolute_links: info
+    absolute_links: relative_to_docs
     unrecognized_links: info
 nav:
   - Home: 'index.md'
