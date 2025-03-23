@@ -24,14 +24,19 @@ jobs:
           pip install -r requirements.txt
       - name: Run mkdocs in strict mode
         id: mkdocs
+        outputs:
+          output1: ${{ mkdocs.outputs.build }}
         run: |
           source venv/bin/activate
-          mkdocs build 2>&1 | tee mkdocs.out
+          mkdocs build 2>&1 | tee "$GITHUB_OUTPUT"
 
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v3
+        env:
+          OUTPUT1: ${{needs.mkdocs.outputs.output1}}
         with:
-          file-path: mkdocs.out
+          message: |
+            The build job produced the following output:\n $OUTPUT1
           comment-tag: execution
           mode: recreate
       - name: Report Status
